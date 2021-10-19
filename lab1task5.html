@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 1</title>
+</head>
+<body>
+   <script>
+   function displayMessage() {
+    alert("5 seconds have passed!");
+    }
+
+    setTimeout(displayMessage, 5000);
+    var time = 10;
+    var countdownhandle = setInterval(countdown, 1000);
+
+    function countdown() {
+            console.log(time--);
+            if (time<0){
+                clearInterval(countdownhandle);
+            }
+    }
+
+   </script>    
+</body>
+</html>
