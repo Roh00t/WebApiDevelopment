@@ -8,17 +8,19 @@
         <section class="intro">
             Here are the pizzas that we offer: <br>
             <article class="pizzas">
-
+            
             </article>
         </section>
-		<!-- Implement the codes for the button -->
+        
+		<button class="hideContactBtn">Hide Contact Information</button>
+        
         <section id="contactInfo">
         </section>
 		
-        <!-- Include the jQuery js file here -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		
-        <script>
-			/* Write your answers to Assignment 1 in this script */
+        <script>           
+             
             var restaurantInfo = {
                 name: "Oscar Oriental Pizza",
                 email: "support@oop.com.sg",
@@ -43,6 +45,38 @@
                         price: 7
                     }
                 ]
+
+            
+            //Show name
+             $('.restaurantName').append(restaurantInfo.name);
+
+            
+            //Show Pizza Information
+              $('.pizzas').append("<ul></ul>");
+              for(pizza in pizzas){
+                  $('ul').append("<li>" + pizzas[pizza].type + " ( $" +  pizzas[pizza].price + " ) " + "</li>");
+              };
+              
+
+
+
+            
+            //OnClick hideContactBtn
+            $('#contactInfo').append("Enquiries? You may email is at <a href='" + restaurantInfo.email + "'>" + restaurantInfo.email + "</a> or contact us at " + restaurantInfo.contactNumber + "<br> Visit us at " + restaurantInfo.address.streetName + " (" + restaurantInfo.address.postalCode + " )" );
+            
+            $('.hideContactBtn').click(function(){
+            $('#contactInfo').toggle();
+             
+             if($('.hideContactBtn').text() === "Hide Contact Information"){
+             
+                $('.hideContactBtn').text("Show Contact Information");
+
+             }
+             else{
+
+                $('.hideContactBtn').text("Hide Contact Information");
+
+                }
+            }); 
+
         </script>
-    
-</body><div id="shopback-app" style="z-index: 2147483647 !important; display: block !important;"></div></html>
