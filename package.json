@@ -1,0 +1,22 @@
+{
+  "name": "wad",
+  "version": "1.0.0",
+  "description": "This is my lab 6 task 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roh00t/wad.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Roh00t/wad/issues"
+  },
+  "homepage": "https://github.com/Roh00t/wad#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
