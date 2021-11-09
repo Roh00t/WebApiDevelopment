@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Event Management Page</title>
+</head>
+
+<body>
+    <h1>Event Management Page</h1>
+    <section class="events">
+
+</section>
+<br>
+<section>
+    <button class="addEvent">Add new event</button>
+</section>
+<br>
+<section class="addNewEvent">
+    <form action="/events" method="POST">
+        <label for="name">Event Name:</label>
+        <input type="text" id="name" name="name"><br>
+        <label for="description">Event Description:</label>
+        <input type="text" id="description" name="description"><br>
+        <label for="startDate">Start Date:</label>
+        <input type="text" id="startDate" name="startDate">
+        <label for="startTime">Start Time:</label>
+        <input type="text" id="startTime" name="startTime"><br>
+        <label for="endDate">End Date:</label>
+        <input type="text" id="endDate" name="endDate">
+        <label for="startTime">End Time:</label>
+        <input type="text" id="endTime" name="endTime"><br>
+        <input type="submit" value="Submit">
+    </form>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            url: "/events",
+            method: "get"
+        })
+        .done(
+            
+            function (data) {
+                // console.log(data);
+                data.forEach(function(event) {
+                    //BACK TICK ` than can type in the html code in
+        $(".events").append(`
+            <article>
+                <h2>${event.name}</h2>
+                <p>
+                    ${event.description}<br>
+                    Start: ${event.start.date} ${event.start.time}<br>
+                    End: ${event.end.date} ${event.end.time}<br>
+                </p>
+            </article>`);
+        })
+            }
+        )
+        .fail(
+            function (err) {
+                console.log(err.responseText);
+            }
+        )
+    })
+    $('.addEvent').click(function(){
+            $('.addNewEvent').toggle();
+             
+             if($('.addEvent').text() === "Cancel Add Event"){
+             
+                $('.addEvent').text("Add new Event");
+
+             }
+             else{
+
+                $('.addEvent').text("Cancel Add Event");
+
+                }
+            }); 
+
+//     $(".addEvent").click(function () {
+    
+//     $(".addNewEvent").toggle();
+// $('.addEvent').text("Cancel Add Event");
+// })
+
+    </script>
+
+</body>
+
+</html>

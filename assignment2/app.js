@@ -1,1 +1,2 @@
-console.log("Starting ____ app");
+console.log("Starting my first Node JS service");
+var mycc = require("./assignment2");
