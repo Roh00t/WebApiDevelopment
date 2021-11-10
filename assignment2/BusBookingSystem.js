@@ -74,8 +74,15 @@ var BusBookingSystem = {
               bvacancy : bv,
           }
         };
+        
+        // BusBookingSystem.addbusBooking.forEach(element =>{
+        //         if(bid== element.bid){
+        //             console.log("ID is Taken. Sad Life");
+        //         }
+        //     });
         BusBookingSystem.buses.push(newDataArray);
-      //Use moduleAssignedVariable.searchbusBookingBybusID() to check for new add bus!
+      
+        //Use moduleAssignedVariable.searchbusBookingBybusID() to check for new add bus!
   },
 
   //Remove existing bus with busID
