@@ -1,4 +1,3 @@
-console.log("Starting calculator app");
 // var person = require("./person.js");
 var courseController = require("./courseController.js");
 
