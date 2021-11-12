@@ -1,12 +1,5 @@
 var BusBookingSystem = {
   buses : [
-      //bcompany = name of the bus company
-      //ddate = departure date
-      //dtime = departure time
-      //adate = arrival date
-      //atime = arrival time
-      //bstatus = Bus Journey Status
-      //bvaccancy = shows the vacant seats on the bus
       {
           busID : "B01",
           details : {
@@ -60,7 +53,6 @@ var BusBookingSystem = {
           },
       }
   ],
-  //Add new bus with busID, destination, departure date, departure time, arrival date, arrival time and bus status
   addbusBooking (bid, bc, dest, dd, dt, ad, at, bs, bv) {
       var newDataArray = {busID : bid,
           details : {
@@ -76,17 +68,8 @@ var BusBookingSystem = {
         };
         
         BusBookingSystem.buses.push(newDataArray);
-        //Use moduleAssignedVariable.searchbusBookingBybusID() to check for new add bus!
   },
 
-  //Remove existing bus with busID
-  removebusBookingBybusID (busID) {
-      delete BusBookingSystem.bus[busID];
-      //Use console.log(BusBookingSystem.bus[busID]) to check for bus removed!
-      //Would return undefined.
-  },
-  
-  //Get busID with destination as search key
   searchbusBookingByDestination(dest) {
     BusBookingSystem.bus.forEach( function(items) {
           if(items.details.destination == dest) {
@@ -95,7 +78,6 @@ var BusBookingSystem = {
       });
   },
 
-  //A sub function, can be used in multiple scenarios
   getbusBookingDetails(index) {
       var getdest, getbc, getddate, getdtime, getadate, getatime, getbstatus, getbvacancy;
       BusBookingSystem.buses.forEach( function(items) {
@@ -123,15 +105,16 @@ var BusBookingSystem = {
       return newData;
   },
 
-  //Get all details of the bus by busID
   searchbusBookingBybusID(busID) {
       var dataInArray = this.getbusBookingDetails(busID);
-      console.log("Bus " + busID + " by " + dataInArray.bcompany + " would be going towards " + dataInArray.destination + ", departing on " + dataInArray.ddate + " at " + dataInArray.dtime + " and arriving on " + dataInArray.adate + " at " + dataInArray.atime + ". It is currently " + dataInArray.bstatus + " and" + " the bus has " + dataInArray.bvacancy + " seats available to book.");
+      console.log("Bus " + busID + " by " + dataInArray.bcompany + " will be going to " + dataInArray.destination + ", departing on " + dataInArray.ddate + " at " + dataInArray.dtime + " and arriving on " + dataInArray.adate + " at " + dataInArray.atime + ". It is currently " + dataInArray.bstatus + " and" + " the bus has " + dataInArray.bvacancy + " seats available to book.");
   },
 
-  //Modify existing bus details by stating the category 
-  //Categories : company, destination, ddate, dtime, adate, atime, bstatus, bvacancy
-  modifybusBooking(busID, newData, dataCategory) {
+  cancelbusBookingBybusID (busID) {
+      delete BusBookingSystem.bus[busID];
+  },
+
+  changebusBooking(busID, newData, dataCategory) {
     BusBookingSystem.bus.forEach( function(items) {
           if(items.busID == busID) {
               items.details[dataCategory] = newData;
