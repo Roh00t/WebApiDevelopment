@@ -79,7 +79,7 @@ var BusBookingSystem = {
   },
 
   getbusBookingDetails(index) {
-      var getdest, getbc, getddate, getdtime, getadate, getatime, getbstatus, getbvacancy;
+      var getdest, getbc, getddate, getdtime, getadate, getatime, getbstatus, getbv;
       BusBookingSystem.buses.forEach( function(items) {
           if(items.busID == index) {
               getbc = items.details.bcompany;
