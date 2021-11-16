@@ -1,75 +1,66 @@
 var express = require('express');
-var router = require('express').Router();
 var eventsController = require('./controllers/eventsController.js');
-const organisersController = require('./controllers/organisersController.js');
-const { organisers } = require('./controllers/organisersController.js');
+var organizersController = require('./controllers/organizersController.js');
 
+    var router = require('express').Router();
     
-router.use(express.urlencoded({
-    extended: true
-}));
+    router.use(express.urlencoded({
+        extended: true
+    }));
+    router.get('/', function(req, res) {
+        res.sendFile(__dirname+"/views/index.html");
+    });
+    router.get('/organizer', function(req, res) {
+        res.sendFile(__dirname+"/views/organizer.html");
+    });
 
-router.get('/', function(req, res) {
-    res.sendFile(__dirname+"/views/index.html");
-});
-router.get('/css/*', function(req, res)  {
-    // req.originalUrl is “/css/style.css” in our http request   
-    res.sendFile(__dirname+"/views/"+req.originalUrl);
-});
-
-router.get('/js/*', function(req, res)  {
-    // req.originalUrl is “/js/jquery.min.js” in our http request   
-    res.sendFile(__dirname+"/views/"+req.originalUrl);
-});
-router.get('/events',function(req,res){
-    res.send(eventsController.getEvents());
-})
-//Form
-router.post('/events', function(req, res) {
-    var data = req.body;
+    router.get('/css/*', function(req, res)  {
+        res.sendFile(__dirname+"/views/"+req.originalUrl);
+    });
     
-    var event = {
-        name: data.name,
-        description: data.description,
-        start: {
-            date: data.startDate,
-            time: data.startTime
-        },
-        end: {
-            date: data.endDate,
-            time: data.endTime
-        }
-    };
-    
-    eventsController.addEvent(event);
-    //To prevent the browser from freezing
-    res.redirect('back');  
-});
+    router.get('/js/*', function(req, res)  {
+        res.sendFile(__dirname+"/views/"+req.originalUrl);
+    });
 
-
-//organisers
-router.get('/organiser', function(req, res) {
-    res.sendFile(__dirname+"/views/organiser.html");
-});
-    router.get('/organisers',function(req,res){
-        res.send(organisersController.getOrganiser());
+    router.get('/events',function(req,res){
+        res.send(eventsController.getEvents());
     })
-    //Form
-    router.post('/organisers', function(req, res) {
+    router.post('/events', function(req, res) {
         var data = req.body;
         
-        var organiser = {
+        var event = {
+            name: data.name,
+            description: data.description,
+            start: {
+                date: data.startDate,
+                time: data.startTime
+            },
+            end: {
+                date: data.endDate,
+                time: data.endTime
+            },
+            organizer: data.organizer   //challeng ex
+        };
+        
+        eventsController.addEvent(event);     
+        res.redirect('back');        
+    });
+
+    router.get('/organizers',function(req,res){
+        res.send(organizersController.getOrganizers());
+    })
+
+    router.post('/organizers', function(req,res){
+        var data = req.body;
+        var organizer = {
             name: data.name,
             username: data.username,
             company: data.company,
             password: data.password
-            
         }
-        organisersController.addOrganiser(organiser);
-        //To prevent the browser from freezing
-        res.redirect('back'); 
+        organizersController.addOrganizer(organizer);
+        res.redirect('back');
+    })
 
-});
 
 module.exports = router;
-

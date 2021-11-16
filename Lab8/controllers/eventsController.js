@@ -12,8 +12,7 @@ var eventsController = {
                 date: "28-03-2020",
                 time: "12:00"
             },
-            organiser: ""
-
+            organizer:"Disney Pte Ltd"
         },
         {
             name:"Event 2",
@@ -26,17 +25,15 @@ var eventsController = {
             end: {
                 date: "15-04-2020",
                 time: "18:00"
-            },
-            organiser: ""
+            }
         }
-    ], 
+    ],
     getEvents: function() {
         return this.events;
     },
     addEvent: function(newEvent) {
         this.events.push(newEvent);
     }
-    
 };
 
 module.exports=eventsController;
