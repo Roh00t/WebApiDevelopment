@@ -44,9 +44,26 @@ $(function() {
             }
         )
 
-    $(".addEvent").click(function () {
-        $(".addNewEvent").show();
-    })
+//Normal Button
+    // $(".addEvent").click(function () {
+    //     $(".addNewEvent").show();
+    // })
+
+//Toggle button
+    $('.addEvent').click(function(){
+        $('.addNewEvent').toggle();
+
+         if($('.addEvent').text() === "Cancel Add event"){
+
+            $('.addEvent').text("Add new event");
+
+         }
+         else{
+
+            $('.addEvent').text("Cancel Add event");
+
+            }
+        });
 
     // the challenge ex
     $.ajax({
