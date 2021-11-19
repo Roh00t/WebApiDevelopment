@@ -1,7 +1,7 @@
 //Set up a connection
 const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost:27017/MySongsDB');
+const env = require('dotenv/config');
+mongoose.connect(process.env.DBCONNECTION, () => console.log('DB is Connected'));
 
 // Create schemas to represent the “artist” and “song” objects.
 const Songs = new mongoose.Schema({
@@ -27,7 +27,7 @@ let artist = mongoose.model('artist', artists);
 
 
 // //Find all songs from the song model.
-Songs.find({});
+Song.find();
 
 // //Find song by ID, 61947f05fdbfd6f5bf236680
 Song.find({_ID:'61947f05fdbfd6f5bf236680'},(error,data) =>{
@@ -39,7 +39,12 @@ Song.find({_ID:'61947f05fdbfd6f5bf236680'},(error,data) =>{
 
 });
 // //Add a new artist into the collection.
-// artists.add()
+const addArtist = new artist({
+    name: "Aruthur Curry",
+    debut: "2021",
+    profilePic: "curry.jpg"
+
+});
 
 // //Update the debut year of a specific artist. For eg, update the debut year of Stephanie Sun to 2001.
 Song.findOneAndUpdate({name:'Stephanie Sun'}, {debut:2001},(error,data) =>{
@@ -53,10 +58,10 @@ Song.findOneAndUpdate({name:'Stephanie Sun'}, {debut:2001},(error,data) =>{
 
 
 // //Delete any artist record by id.
-artists.delete({_ID:'61948160fdbfd6f5bf236685'},(error) =>{
-    if(error){
-        console.log(error);
-    }
-});
+// artists.delete({_ID:'61948160fdbfd6f5bf236685'},(error) =>{
+//     if(error){
+//         console.log(error);
+//     }
+// });
 
 
