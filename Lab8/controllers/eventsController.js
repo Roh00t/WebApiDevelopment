@@ -31,9 +31,9 @@ var eventsController = {
     getEvents: function() {
         return this.events;
     },
+    //Update database and push
     addEvent: function(newEvent) {
         this.events.push(newEvent);
     }
 };
-
 module.exports=eventsController;
