@@ -23,7 +23,9 @@ router.get('/js/*', function(req, res)  {
 router.get('/patients',function(req,res){
     res.send(wardController.getPatients());
 })
-
+router.get('/avabed',function(req,res){
+    res.send(wardController.getBeds());
+})
 //Post Patients
 router.post('/patients', function(req, res) {
     var data = req.body;
@@ -36,8 +38,8 @@ router.post('/patients', function(req, res) {
         bedNum: data.bedNum
     };
     
-    wardController.addPatient(patient);     
-    res.redirect('back');        
+    wardController.addPatients(patient);     
+    res.redirect('/');        
 });
 
 module.exports = router;

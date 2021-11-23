@@ -11,7 +11,6 @@ $(function() {
                         <td>${patient.name}</td>
                         <td>${patient.nric}</td>
                         <td>${patient.contactNum}</td>
-                        <td>${patient.name}</td>
                         <td>${patient.bedNum}</td>
 
                     </tr>
@@ -24,11 +23,7 @@ $(function() {
                 console.log(err.responseText);
             }
         )
-
-
-
-
-})
+});
 
 
 

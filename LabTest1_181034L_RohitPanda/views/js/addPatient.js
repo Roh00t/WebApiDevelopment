@@ -1,14 +1,15 @@
 $(function() {
     $.ajax({
-        url: "/patients",
+        url: "/avabed",
         method: "get"
     })
         .done(
             function (data) {
-                if(data = "Unavailable") {
-                    $("#bedNum").hide();
-                }data.forEach(function (status) {
-                    $("#bedNum").prepend(`<option></option>`);
+                data.forEach(function (status) {
+                    if(status.status=="Available"){
+                        $("#bedNum").append(`<option value="${status.number}">${status.number}</option>`);
+                    }
+                    
                 });
                 
             }

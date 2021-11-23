@@ -1,3 +1,4 @@
+
 var wardController = {
     beds: [
         {
@@ -48,6 +49,8 @@ var wardController = {
     },
     //Update database and push
     addPatients: function(newPatients) {
+        this.beds[newPatients.bedNum-1].status = "Unavailable"
         this.patients.push(newPatients);
     }
 }
+module.exports = wardController;
