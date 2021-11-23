@@ -7,7 +7,7 @@ var wardController = {
         },
         {
             number: 2,
-            status: "Unavailable"
+            status: "Occupied"
         },
         {
             number: 3,
@@ -15,7 +15,7 @@ var wardController = {
         },
         {
             number: 4,
-            status: "Unavailable"
+            status: "Occupied"
         },
         {
             number: 5,
@@ -49,7 +49,7 @@ var wardController = {
     },
     //Update database and push
     addPatients: function(newPatients) {
-        this.beds[newPatients.bedNum-1].status = "Unavailable"
+        this.beds[newPatients.bedNum-1].status = "Occupied"
         this.patients.push(newPatients);
     }
 }

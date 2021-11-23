@@ -23,6 +23,7 @@ router.get('/js/*', function(req, res)  {
 router.get('/patients',function(req,res){
     res.send(wardController.getPatients());
 })
+//Get Available Bed
 router.get('/avabed',function(req,res){
     res.send(wardController.getBeds());
 })
