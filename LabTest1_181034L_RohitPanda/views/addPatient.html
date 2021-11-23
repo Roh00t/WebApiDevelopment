@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Add Patient</title>
+</head>
+<body>
+    <form action="/patients" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name"><br>
+        <label for="nric">NRIC:</label>
+        <input type="text" name="nric" id="nric"><br>
+        <label for="contactNum">Contact Number</label>
+        <input type="number" name="contactNum" id="contactNum"><br>
+        <label for="bedNum">Bed Number</label>
+        <select name="bedNum" id="bedNum">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select><br>
+        <input type="submit" value="Add patient">
+    </form>
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/addPatient.js"></script>
+</body>
+</html>

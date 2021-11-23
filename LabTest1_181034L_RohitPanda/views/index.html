@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>View Patients</title>
+    <style>
+        th:first-child,td:first-child {
+            width: 300px;
+        }
+        th:not(:first-child),td:not(:first-child) {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of patients</h1>
+    <section>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>NRIC</th>
+                <th>Contact Number</th>
+                <th>Bed Number</th>
+                <th>Status</th>
+            </tr>
+            <tbody class="patients">
+            
+            </tbody>
+        </table>
+        <a href="/addPatient">
+            <button>Add a new patient</button>
+        </a>
+    </section>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>
