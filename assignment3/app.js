@@ -1,10 +1,10 @@
 //Set up a connection
-const mongoose = require('mongoose');
-const env = require('dotenv/config');
-mongoose.connect(process.env.DBCONNECTION, () => console.log('DB is Connected'));
+var mongoose = require('mongoose');
+var schema = mongoose.Schema;
+mongoose.connect("mongodb://localhost:27017/MySongsDB", () => console.log('DB is Connected'));
 
 // Create schemas to represent the “artist” and “song” objects.
-const Songs = new mongoose.Schema({
+var SongsSchema = new schema({
     title: String,
     album: String,
     duration: String,
@@ -14,7 +14,7 @@ const Songs = new mongoose.Schema({
 
 });
 
-const artists = new mongoose.Schema({
+var artistsSchema = new schema({
     name: String,
     debut: Number,
     profilePic: String 
@@ -22,8 +22,8 @@ const artists = new mongoose.Schema({
 
 
 //Create models to represent the artist and song schemas
-let Song = mongoose.model('Song', Songs);
-let artist = mongoose.model('artist', artists);
+let Song = mongoose.connection.model('Song', SongsSchema,);
+let artist = mongoose.connection.model('artist', artistsSchema);
 
 
 // //Find all songs from the song model.
