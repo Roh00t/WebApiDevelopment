@@ -8,7 +8,7 @@ $(function() {
                 data.forEach(function(event) {
                     $(".events").append(`
                         <article>
-                        <h2>${event.name}</h2>
+                        <h2><a href="/edit?id=${event._id}">${event.name}</a></h2>
                         <div>
                             ${event.description}<br>
                             Start: ${event.start.date} ${event.start.time}<br>

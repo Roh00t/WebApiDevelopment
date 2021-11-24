@@ -49,9 +49,25 @@ var database = {
     },
     getEvent: function(id, callback) {
         eventModel.findById(id,callback);
+    },
+    updateEvent: function(id, n, d, sd, st, ed, et,callback) {
+        var updatedEvent = {
+            name: n,
+            description: d,
+            start: {
+                date: sd,
+                time: st
+            },
+            end: {
+                date: ed,
+                time: et
+            }
+        };
+        eventModel.findByIdAndUpdate(id, updatedEvent, callback);
+    },
+    deleteEvent: function(id,callback) {
+        eventModel.findByIdAndDelete(id,callback);
     }
-
-
 
 };
 
