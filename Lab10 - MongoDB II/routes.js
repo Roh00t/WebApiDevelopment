@@ -51,6 +51,7 @@ var organizersController = require('./controllers/organizersController.js');    
     });
 
     router.put('/events', function (req, res) {
+        console.log("put at router activated");
         var data = req.body;
         db.updateEvent(data.id, data.name, data.description, data.startDate, data.startTime, data.endDate, data.endTime,
             function (err, event) {

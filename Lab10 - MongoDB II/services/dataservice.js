@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 var eventSchema = {};
 var eventModel;
-
+mongoose.set('debug',true);
 var database = {
     connect: function() {
         mongoose.connect('mongodb://localhost:27017/eventsDB', function(err){

@@ -1,5 +1,5 @@
 var eventId = 0;
-$(function() { // This is our so called “ready” function in shorthand
+$(function () { // This is our so called “ready” function in shorthand
     var urlParams = new URLSearchParams(window.location.search);
     eventId = urlParams.get('id');
 
@@ -21,10 +21,10 @@ $(function() { // This is our so called “ready” function in shorthand
         }
     );
     //Delete Button
-    $(".deleteEventBtn").on('click', function() {
+    $(".deleteEventBtn").on('click', function () {
         $.ajax(
             {
-                url: '/events/'+eventId,
+                url: '/events/' + eventId,
                 method: 'delete'
             }
         ).done(
@@ -37,36 +37,35 @@ $(function() { // This is our so called “ready” function in shorthand
                 console.log(err.responseText);
             }
         );
+    });
 });
 
-},
-function editEvent() {
-    var event = {
-        id: eventId,
-        name: $("#name").val(),
-        description: $("#description").val(),
-        startDate: $("#startDate").val(),
-        startTime: $("#startTime").val(),
-        endDate: $("#endDate").val(),
-        endTime: $("#endTime").val()
-    };
-    $.ajax(
-        {
-            url: '/events',
-            method: 'put',
-            data: event
-        }
-    ).done(
-        function (data) {
-            alert("Event updated!");
-        }
-    ).fail(
-        function (err) {
-           console.log(err.responseText);
-        }
-    );
-    return false;
-}
 
-);
+    function editEvent() {
+        var event = {
+            id: eventId,
+            name: $("#name").val(),
+            description: $("#description").val(),
+            startDate: $("#startDate").val(),
+            startTime: $("#startTime").val(),
+            endDate: $("#endDate").val(),
+            endTime: $("#endTime").val()
+        };
+        $.ajax(
+            {
+                url: '/events',
+                method: 'put',
+                data: event
+            }
+        ).done(
+            function (data) {
+                alert("Event updated!");
+            }
+        ).fail(
+            function (err) {
+                console.log(err.responseText);
+            }
+        );
+        return false;
+    }
 
