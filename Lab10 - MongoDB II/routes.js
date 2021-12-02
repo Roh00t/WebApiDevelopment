@@ -37,21 +37,17 @@ var organizersController = require('./controllers/organizersController.js');    
         var id = req.params.id;
         db.getEvent(id, function (err, event) {
             res.send(event);
-        })
-
-    })
+        });
+    });
     router.post('/events', function (req, res) {
         var data = req.body;
         db.addEvent(data.name, data.description, data.startDate, data.startTime, data.endDate, data.endTime,
             function (err, event) {
                 res.redirect('back');
-            })
-
-
+            });
     });
 
     router.put('/events', function (req, res) {
-        console.log("put at router activated");
         var data = req.body;
         db.updateEvent(data.id, data.name, data.description, data.startDate, data.startTime, data.endDate, data.endTime,
             function (err, event) {
@@ -72,23 +68,46 @@ var organizersController = require('./controllers/organizersController.js');    
         res.sendFile(__dirname + "/views/editEvent.html");
     });
 
-
-    router.get('/organizers', function (req, res) {
-        res.send(organizersController.getOrganizers());
-    })
-
     router.post('/organizers', function (req, res) {
         var data = req.body;
-        var organizer = {
-            name: data.name,
-            username: data.username,
-            company: data.company,
-            password: data.password
-        }
-        organizersController.addOrganizer(organizer);
-        res.redirect('back');
-    })
+        db.addOrganizer(data.name, data.company, data.username,data.password,
+            function (err, organizer) {
+                res.redirect('back');
+            });
+    });
 
+    router.get('/organizers', function (req, res) {
+        db.getAllOrganizers(function (err, organisers) {
+            res.send(organisers);
+        });
+    });
+
+
+    router.get('/organizers/:id', function (req, res) {
+        var id = req.params.id;
+        db.getOrganizer(id, function (err, organizer) {
+            res.send(organizer);
+        });
+    });
+
+    router.put('/organizers', function (req, res) {
+        console.log("Update");
+        var data = req.body;
+        db.updateOrganizer(data.id,data.name, data.company, data.username,data.password,
+            function (err, organizer) {
+                res.end();
+            });
+    });
+
+    router.delete('/organizers/:id', function (req, res) {
+        var id = req.params.id;
+        db.deleteOrganizer(id, function (err, organizer) {
+            res.end();
+        });
+    });
+    router.get('/organizer/edit', function (req, res) {
+        res.sendFile(__dirname + "/views/editOrganizer.html");
+    });
 
 
 module.exports = router;

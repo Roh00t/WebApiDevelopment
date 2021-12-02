@@ -9,8 +9,9 @@ $(function() {
                     $(".organizersSection").show();
                 }
                 data.forEach(function (organizer) {
-                    $(".organizerList").append(`<li> ${organizer.name} from ${organizer.company}</li>`);
+                    $(".organizerList").append(`<li><a href="/organizer/edit?id=${organizer._id}">${organizer.name} from ${organizer.company}</a></li>`);
                 });
+               
             }
         )
         .fail(

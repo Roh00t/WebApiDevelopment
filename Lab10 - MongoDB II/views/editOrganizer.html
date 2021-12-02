@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+        <header>
+                <h1><a href="/organizer">Organizer Management Page</a></h1>
+        </header>
+        <h2>Edit Organizer</h2>
+        <form onsubmit="return editOrganizer();">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br>
+                <label for="company">Company:</label>
+                <input type="text" id="company" name="company"><br>
+                <label for="username">User Name:</label>
+                <input type="text" id="username" name="username"><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password"><br>
+                <button type="submit">Save Organizer</button>
+        </form>
+        <button class="deleteOrganizerbtn">Delete Organizer</button>
+        <br>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/editOrganizer.js"></script>
+</body>
+
+</html>

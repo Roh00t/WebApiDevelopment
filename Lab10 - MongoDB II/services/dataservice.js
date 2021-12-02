@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 var eventSchema = {};
 var eventModel;
+var organizerSchema = {};
+var organizerModel;
 mongoose.set('debug',true);
 var database = {
     connect: function() {
@@ -21,8 +23,16 @@ var database = {
                         time: String
                     }
                 });
+                organizerSchema = schema({
+                    name: String,
+                    company: String,
+                    username: String,
+                    password: String
+
+                });
                 var connection = mongoose.connection;
                 eventModel = connection.model('event', eventSchema);
+                organizerModel = connection.model('organizer',organizerSchema)
             } else {
                 console.log("Error connecting to Mongo DB");
             }
@@ -67,6 +77,37 @@ var database = {
     },
     deleteEvent: function(id,callback) {
         eventModel.findByIdAndDelete(id,callback);
+    },
+    addOrganizer: function(n, c, un, p, callback) {
+        var newOrganizer = new organizerModel({
+            name: n,
+            company: c,
+            username: un,
+            password: p
+            
+        });
+        newOrganizer.save(callback);
+    },
+
+    getAllOrganizers: function(callback) {
+        organizerModel.find({},callback);
+    },
+    getOrganizer: function(id, callback) {
+        organizerModel.findById(id,callback);
+    },
+
+    updateOrganizer: function(id,n, c, un, p, callback) {
+        var  updatedOrganizer ={
+            name: n,
+            company: c,
+            username: un,
+            password: p
+            
+        };
+        organizerModel.findByIdAndUpdate(id, updatedOrganizer, callback);
+    },
+    deleteOrganizer: function(id,callback) {
+        organizerModel.findByIdAndDelete(id,callback);
     }
 
 };
