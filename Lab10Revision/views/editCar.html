@@ -1,0 +1,28 @@
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Edit Car</title>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Car Management Page</a></h1>
+        </header>
+        <h2>Edit Car</h2>
+        <form onsubmit="return editCar();">
+            <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br>
+                <label for="brand">Brand:</label>
+                <input type="brand" id="brand" name="brand"><br>
+                <label for="carDescription">Car Description</label>
+                <input type="text" id="carDescription" name="carDescription"><br>
+                <label for="carType">Car Type</label>
+                <input type="text" id="carType" name="carType"><br>
+                <button type="submit">Save event</button>
+        </form>
+        <button class="deleteCarBtn">Delete event</button>
+    </body>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/editCar.js"></script>
+</html>

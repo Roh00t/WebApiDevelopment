@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Car Managment Page</title>
+        <link rel="stylesheet" href="../views/css/style.css">
+    </head>
+    <body>
+        <h1>Car Management Page</h1>
+        <section class="cars">
+
+        </section><br><br>
+        <section>
+            <button class="addCar">Add new car</button>
+        </section>
+        <br>
+        <section class="addNewCar">
+            <form action="/cars" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br>
+                <label for="brand">Brand:</label>
+                <input type="brand" id="brand" name="brand"><br>
+                <label for="carDescription">Car Description</label>
+                <input type="text" id="carDescription" name="carDescription"><br>
+                <label for="carType">Car Type</label>
+                <input type="text" id="carType" name="carType"><br>
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+        <script src="./js/jquery.min.js"></script>
+        <script src="./js/index.js"></script>
+    </body>
+</html>
