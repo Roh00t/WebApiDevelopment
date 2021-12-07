@@ -32,30 +32,28 @@ router.get('/cars',function(req,res){
         res.send(cars);
     });
 });
-router.get('/drivers/:id', function (req, res) {
-    var id = req.params.id;
-    db.getAvailableDrivers(id, function (err, driver) {
+
+router.get('/drivers', function (req, res) {
+    // var id = req.params.id;
+    db.getAvailableDrivers(function (err, driver) {
         res.send(driver);
     });
 });
+
 router.post('/drivers', function (req, res) {
     var data = req.body;
-    db.addDriver(data.name, data.licenseID, data.contactNumber, data.available,
+    db.addDriver(data.name, data.licenseID, data.contactNumber, true,
         function (err, driver) {
-            res.redirect('/addDriverSuccess');
-        });
-        router.get('/addDriverSuccess', function (req, res) {
-            res.sendFile(__dirname + "/views/addDriverSuccess.html");
+            res.send('successfully added driver');
         });
 });
 router.put('/assignDriver', function (req, res) {
     var data = req.body;
     db.assignDriver(data.carId,data.driverName, function(err,car){
-        db.updateDriver(data.id,data.name, data.licenseID, data.contactNumber, data.available,
+        db.updateDriver(data.driverName, false,
         function (err, driver) {
-            res.end();
+            res.send("Driver Assigned Successfully");
         });
-        res.end();
     });
 });
 

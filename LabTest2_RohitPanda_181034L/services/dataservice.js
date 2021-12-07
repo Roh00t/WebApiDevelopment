@@ -1,44 +1,48 @@
 var mongoose = require('mongoose');
-const { updateCar } = require('../../Lab10Revision/services/carservice');
 var schema = mongoose.Schema;
 var carSchema = {};
 var carModel;
 var driverSchema = {};
 var driverModel;
 console.log('Dataservice loaded successfully');
-mongoose.set('debug',true);
+mongoose.set('debug', true);
 
 var database = {
     connect: function () {
-        mongoose.connect('mongodb://localhost:27017/carAssignmentDB',function(err){
-            if(err==null){
+        mongoose.connect('mongodb://localhost:27017/carAssignmentDB', function (err) {
+            if (err == null) {
                 console.log("Connected to Mongo DB");
                 //Schemas
                 carSchema = schema({
-                    model:String,
-                    driverName:String,
+                    model: String,
+                    driverName: String,
                 });
                 driverSchema = schema({
-                    name:String,
-                    licenseID:String,
-                    contactNumber:Number,
-                    available:Boolean
+                    name: String,
+                    licenseID: String,
+                    contactNumber: Number,
+                    available: Boolean
                 });
 
                 //Models
                 var connection = mongoose.connection;
-                carModel = connection.model('car',carSchema);
-                driverModel = connection.model('driver',driverSchema);
-            }else{
+                carModel = connection.model('car', carSchema);
+                driverModel = connection.model('driver', driverSchema);
+            } else {
                 console.log("Error connecting to MongoDB")
             }
         });
     },
     getAllCars: function (callback) {
-        carModel.find({},callback);
+        carModel.find({}, callback);
     },
-    getAvailableDrivers: function (id,callback) {
-        driverModel.findById(id,callback);
+    // getAvailableDrivers: function (id,callback) {
+    //     driverModel.findById(id,callback);
+    // },
+
+    // kb
+    getAvailableDrivers: function (callback) {
+        driverModel.find({ available: true }, callback);
     },
 
     addDriver: function (n, l, cn, a, callback) {
@@ -47,26 +51,23 @@ var database = {
             licenseID: l,
             contactNumber: cn,
             available: a
-            
+
         });
         newDriver.save(callback);
         console.log("New driver successfully added!");
     },
-    assignDriver: function (carId, dn,callback) {
-        var  assignedDriver ={
-            driverName:dn
+    assignDriver: function (carId, dn, callback) {
+        var assignedDriver = {
+            driverName: dn
         };
-        driverModel.findByIdAndUpdate(carId, assignedDriver, callback);
+        carModel.findByIdAndUpdate(carId, assignedDriver, callback);
     },
-    updateDriver: function(id,n, l, cn, a, callback) {
-        var  updatedDriver ={
-            name: n,
-            licenseID: l,
-            contactNumber: cn,
-            available: a
-            
-        };
-        driverModel.findByIdAndUpdate(id, updatedDriver, callback);
+    updateDriver: function (dn, a, callback) {
+        // var  updatedDriver ={
+        //     available: a
+
+        // };
+        driverModel.findOneAndUpdate({ "name": dn }, { $set: { available: false } }, callback);
     }
 };
 

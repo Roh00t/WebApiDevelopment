@@ -1,5 +1,3 @@
-const { getAvailableDrivers } = require("../../services/dataservice");
-
 $(function () {
     var carId = sessionStorage.getItem("carId");
     $.ajax(
