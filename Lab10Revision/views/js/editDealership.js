@@ -20,7 +20,7 @@ $(function () { // This is our so called “ready” function in shorthand
         }
     );
     //Delete Button
-    $(".deletedealershipbtn").on('click', function () {
+    $(".deleteDealershipBtn").on('click', function () {
         $.ajax(
             {
                 url: '/dealerships/' + dealershipId,

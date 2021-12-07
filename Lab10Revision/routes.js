@@ -57,13 +57,7 @@ var organizersController = require('./controllers/dealershipController.js');    
     router.get('/edit', function (req, res) {
         res.sendFile(__dirname + "/views/editCar.html");
     });
-    router.post('/dealerships', function (req, res) {
-        var data = req.body;
-        db.addDealership(data.name, data.address, data.username,data.password,
-            function (err, dealership) {
-                res.redirect('back');
-            });
-    });
+
 
     router.get('/dealerships', function (req, res) {
         db.getAllDealerships(function (err, dealerships) {
@@ -77,6 +71,13 @@ var organizersController = require('./controllers/dealershipController.js');    
         db.getDealership(id, function (err, dealership) {
             res.send(dealership);
         });
+    });
+    router.post('/dealerships', function (req, res) {
+        var data = req.body;
+        db.addDealership(data.name, data.address, data.username,data.password,
+            function (err, dealership) {
+                res.redirect('back');
+            });
     });
     router.put('/dealerships', function (req, res) {
         var data = req.body;
