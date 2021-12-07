@@ -26,7 +26,7 @@ var organizersController = require('./controllers/dealershipController.js');    
             res.send(cars);
         });
     });
-    router.get('/car/:id', function (req, res) {
+    router.get('/cars/:id', function (req, res) {
         var id = req.params.id;
         db.getCar(id, function (err, car) {
             res.send(car);

@@ -4,7 +4,7 @@ $(function () { // This is our so called “ready” function in shorthand
     carId = urlParams.get('id');
 
     $.ajax({
-        url: "/car/" + carId,
+        url: "/cars/" + carId,
         method: "get"
     }).done(
         function (data) {
