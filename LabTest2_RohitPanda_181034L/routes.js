@@ -48,7 +48,7 @@ router.post('/drivers', function (req, res) {
             res.sendFile(__dirname + "/views/addDriverSuccess.html");
         });
 });
-router.put('/assignDrivers', function (req, res) {
+router.put('/assignDriver', function (req, res) {
     var data = req.body;
     db.assignDriver(data.carId,data.driverName, function(err,car){
         db.updateDriver(data.id,data.name, data.licenseID, data.contactNumber, data.available,

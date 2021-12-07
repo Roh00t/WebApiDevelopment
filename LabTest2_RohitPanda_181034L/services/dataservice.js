@@ -41,13 +41,6 @@ var database = {
         driverModel.findById(id,callback);
     },
 
-    assignDriver: function (carId, dn,callback) {
-        var  updatedCar ={
-            driverName:dn
-        };
-        driverModel.findByIdAndUpdate(carId, updatedCar, callback);
-    },
-
     addDriver: function (n, l, cn, a, callback) {
         var newDriver = new driverModel({
             name: n,
@@ -58,6 +51,12 @@ var database = {
         });
         newDriver.save(callback);
         console.log("New driver successfully added!");
+    },
+    assignDriver: function (carId, dn,callback) {
+        var  assignedDriver ={
+            driverName:dn
+        };
+        driverModel.findByIdAndUpdate(carId, assignedDriver, callback);
     },
     updateDriver: function(id,n, l, cn, a, callback) {
         var  updatedDriver ={
