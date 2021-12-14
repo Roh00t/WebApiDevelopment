@@ -1,7 +1,7 @@
 {
   "name": "labtest2_rohitpanda_181034l",
   "version": "1.0.0",
-  "description": "This is my lab test 2",
+  "description": "",
   "main": "routes.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
