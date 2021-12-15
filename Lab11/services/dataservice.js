@@ -40,15 +40,21 @@ var database = {
     getRooms: function(callback){
         roomModel.find({}, callback);
     },
-    searchRoom: function(/* add your own parameters*/) {
+    searchRoom: function(t,callback) {
+        roomModel.find({type: new RegExp(t,'i')},callback);
     },
+
     getRoomById:function(id,callback){
         roomModel.findById(id, callback);
     },
-    updateRoomPrice: function(/* add your own parameters*/){
+    updateRoomPrice: function(t,p,callback){
+        roomModel.updateMany({type:t},{price:p},callback);
     },
-    deleteRoomByType: function(/* add your own parameters*/){
+
+    deleteRoomByType: function(t,callback){
+        roomModel.deleteMany({type:t},callback);
     }
+
 };
 
 module.exports = database;
