@@ -92,9 +92,72 @@ db.connect();
                 }
             }
         })
+    });
+    router.get('/api/flights', function (req, res) {
+        db.getFlights(function(err,flights){
+            if (err) {
+                res.status(500).send("Unable to get all flights");
+            } else {
+                res.status(200).send(flights);
+            }
+        })
 
+    })
+
+    router.post('/api/flights', function (req, res) {
+        var data = req.body;
+        db.addFlight(data.flightNumber,data.source,data.destination,data.distance,function(err,flight){
+            if (err) {
+                res.status(500).send("Unable to add a new flight");
+            } else {
+                res.status(200).send(flight);
+            }
+   })
 
     });
 
+    router.put('/api/flights', function (req, res) {
+        var data = req.body;
+        db.updateFlight(data.id,data.flightNumber,data.source,data.destination,data.distance,function(err,flights){
+            if (err) {
+                res.status(500).send("Unable to update the flights");
+            } else {
+                console.log(flights);
+                if (flights==null || flights.modifiedCount == 0) {
+                    res.status(200).send("No flights were updated");
+                } else {
+                    res.status(200).send("Flights successfully updated");
+                }
+            }
+        })
+
+    });
+
+    router.get('/api/flights/:destination', function (req, res) {
+        var destination = req.params.destination;
+        db.getFlightByDestination(destination,function(err,flight) {
+            if (err) {
+                res.status(500).send("Unable to find a room with this destination");
+            } else {
+                res.status(200).send(flight);
+            }
+        });
+
+    });
+
+    router.delete('/api/flights/:id', function (req, res) {
+        var id = req.params.id;
+        db.deleteFlight(roomType,function(err,rooms) {
+            if (err) {
+                res.status(500).send("Unable to delete flights");
+            } else {
+                if (rooms==null || rooms.deletedCount == 0) {
+                    res.status(200).send("No flights were deleted");
+                } else {
+ res.status(200).send("Flights with the id " + id + " are deleted.");
+                }
+            }
+        })
+    });
 
 module.exports = router;

@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 var roomSchema = {};
 var roomModel;
+var flightSchema = {};
+var flightModel;
 
 // deprecation not needed for newer version of mongoose
 // mongoose.set('useNewUrlParser', true);
@@ -21,8 +23,15 @@ var database = {
                     type: String,
                     size: Number
                 });
+                flightSchema = schema({
+                    flightNumber: String,
+                    source:String,
+                    destination:String,
+                    distance:Number
+                });
                 var connection = mongoose.connection;
                 roomModel = connection.model("rooms", roomSchema);
+                flightModel = connection.model("flights", flightSchema);
             } else {
                 console.log("Error connecting to Mongo DB");
             }
@@ -53,8 +62,34 @@ var database = {
 
     deleteRoomByType: function(t,callback){
         roomModel.deleteMany({type:t},callback);
-    }
-
+    },
+    addFlight: function(f, s, des, dis, callback){
+        var newFlight = new flightModel({
+            flightNumber: f,
+            source:s,
+            destination:des,
+            distance:dis
+        });
+        newFlight.save(callback);
+    },
+    getFlights: function(callback){
+        flightModel.find({}, callback);
+    },
+    getFlightByDestination:function(des,callback){
+        flightModel.find({destination:des}, callback);
+    },
+    updateFlight: function(id,f,s,des,dis,callback){
+        var updatedFlight = {
+            flightNumber: f,
+            source:s,
+            destination:des,
+            distance:dis
+        };
+        flightModel.updateOne({id:id}, updatedFlight, callback);
+    },
+    deleteFlight: function(src,callback) {
+        flightModel.deleteMany({source,src},callback);
+    },
 };
 
 module.exports = database;
