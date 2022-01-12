@@ -85,7 +85,7 @@ var database = {
             destination:des,
             distance:dis
         };
-        flightModel.updateOne({id:id}, updatedFlight, callback);
+        flightModel.updateOne({_id:id}, updatedFlight, callback);
     },
     deleteFlight: function(src,callback) {
         flightModel.deleteMany({source,src},callback);
