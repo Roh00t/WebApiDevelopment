@@ -21,11 +21,11 @@ var database = {
                     end: String,
                     module: {
                         type: schema.Types.ObjectId,
-                        ref: 'modules'
+                        ref: 'module'
                     },
                     tutor: {
                         type: schema.Types.ObjectId,
-                        ref: 'tutors'
+                        ref: 'tutor'
                     }
                 });
                 tutorSchema = schema({
@@ -53,16 +53,26 @@ var database = {
         });
         newTimetable.save(callback);
     },
-    getAllTimetables: function (callback) {
-        //    eventModel.find({}).populate('organizer').exec(callback);
-        //    eventModel.find({}).populate('module', 'company').exec(callback);
-        timetableModel.find({}).populate('module', 'tutor', ['day', 'start', 'end']).exec(callback);
+    getAllModules: function(callback){
+        moduleModel.find({},callback);
     },
-    getTimetableByTutorId: function (id, callback) {
-        tutorModel.findById(id).populate('timetable'['day', 'start', 'end', 'code']);
+    getModuleByID: function(id,callback){
+        moduleModel.findById(id,callback);
+    },
+    getAllTutors: function(callback){
+        tutorModel.find({},callback);
+    },
+    getTutorByID: function(id,callback){
+        tutorModel.findById(id,callback);
+    },
+    getAllTimetables: function (callback) {
+        timetableModel.find({}).populate('module').populate('tutor').exec(callback);
+    },
+    getTimetableByTutorId: function (tid, callback) {
+        timetableModel.find({tutor:{_id:tid}}).populate('module').exec(callback);
     },
     getTimetableById: function (id, callback) {
-        timetableModel.findById(id).populate('module', 'tutor').exec(callback);
+        timetableModel.findById(id).populate('module').populate('tutor').exec(callback);
     },
 };
 
