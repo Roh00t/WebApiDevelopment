@@ -43,6 +43,7 @@ var database = {
             }
         })
     },
+    //Add Timetable --> Uses timetableeModel
     addTimetable: function (d, s, e, mid, tid, callback) {
         var newTimetable = new timetableModel({
             day: d,
@@ -65,15 +66,18 @@ var database = {
     getTutorByID: function(id,callback){
         tutorModel.findById(id,callback);
     },
+    //getAll Timetables uses Timetable model too
     getAllTimetables: function (callback) {
         timetableModel.find({}).populate('module').populate('tutor').exec(callback);
     },
+    //getTimetableByTutorId uses timetableModel
     getTimetableByTutorId: function (tid, callback) {
         timetableModel.find({tutor:{_id:tid}}).populate('module').exec(callback);
     },
+    //getTimetableById using timetable Model
     getTimetableById: function (id, callback) {
         timetableModel.findById(id).populate('module').populate('tutor').exec(callback);
     },
 };
-
+// Exports the database to be used in other files
 module.exports = database;
