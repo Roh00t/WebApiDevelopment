@@ -92,7 +92,7 @@ router.delete('/api/bookings/name/:name', function (req, res) {
             res.status(401).send("No tokens are provided.You are not authenticated to perform this action");
         } else {
             var role = req.booking.role;
-            if (role !== 'admin') {
+            if (role != 'admin') {
                 res.status(403).send("You are forbidden to delete the records.");
             } else {
                 if (err) {
